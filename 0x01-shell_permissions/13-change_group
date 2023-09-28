@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo chwon :school hello
+chgrp school hello
