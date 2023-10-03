@@ -1,5 +1,5 @@
 #!/bin/bash
-chmod u+x $file
+chmod u+x */
 git add .
 git commit -m "$message"
 git push
