@@ -1,0 +1,5 @@
+#!/bin/bash
+chmod u+x $file
+git add .
+git commit -m "$message"
+git push
