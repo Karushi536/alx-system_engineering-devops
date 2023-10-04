@@ -1,2 +1,3 @@
 #!bin/bash
-cut -c 1 | paste -s -d ''
+echo -e "Hello\nOpenAI\nAwesome" | awk '{printf substr($0,1,1)} END {print ""}'
+
