@@ -1,2 +1,2 @@
 #!/bin/bash
-for file in /path/to/source_directory/[A-Z]*; do mv "$file" /tmp/u/; done
+for file in /path/to/source_directory/[A-Z]*, do mv "$file" /tmp/u/, done
