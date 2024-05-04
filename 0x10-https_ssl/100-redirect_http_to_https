@@ -37,7 +37,102 @@ frontend  ollyjhay-frontend
         bind *:80
         mode http
         bind *:443 ssl crt /etc/haproxy/certs/www.ollyjhay.tech.pem
-        redirect scheme https if !{ ssl_fc }
+        
+Month #0	110.06%
+0x01. Emacs	100%
+0x00. Shell, navigation	100%
+Setting up your local coding environment optional	200%
+0x02. vi	73.75%
+0x03. Git	156.83%
+0x04. Professional Technologies	100%
+0x00. Shell, basics	65%
+0x01. Shell, permissions	119.25%
+0x02. Shell, I/O Redirections and filters	85.07%
+Professional Relationships optional	200%
+0x03. Shell, init files, variables and expansions	107.25%
+0x00. C - Hello, World	200%
+0x01. C - Variables, if, else, while	107.25%
+0x02. C - Functions, nested loops	65%
+0x03. C - Debugging	56.38%
+0x04. C - More functions, more nested loops	80.46%
+0x05. C - Pointers, arrays and strings	179.17%
+0x06. C - More pointers, arrays and strings	95.31%
+0x07. C - Even more pointers, arrays and strings	56.88%
+Evaluation #0	53.57%
+Month #1	105.64%
+0x08. C - Recursion	7.14%
+0x09. C - Static libraries	46.46%
+0x0A. C - argc, argv	116.62%
+0x0B. C - malloc, free	85.22%
+Professional Social Presence	100%
+0x0C. C - More malloc, free	42.24%
+0x0D. C - Preprocessor	100%
+0x0E. C - Structures, typedef	63.52%
+0x0F. C - Function pointers	200%
+0x10. C - Variadic functions	100%
+0x11. C - printf (weight: 5)	145.35%
+0x12. C - Singly linked lists	107.25%
+0x13. C - More singly linked lists	179.61%
+Evaluation #1	26.67%
+Month #2	111.45%
+0x14. C - Bit manipulation	125%
+0x15. C - File I/O	200%
+0x16. C - Simple Shell (weight: 10)	106.14%
+Evaluation #2	62.5%
+Month #3	118.93%
+0x00. Python - Hello, World	107.25%
+0x01. Python - if/else, loops, functions	107.25%
+0x02. Python - import & modules	200%
+0x03. Python - Data Structures: Lists, Tuples	184.62%
+0x04. Python - More Data Structures: Set, Dictionary	94.05%
+0x17. C - Doubly linked lists	67.19%
+0x18. C - Dynamic libraries	0%
+0x19. C - Stacks, Queues - LIFO, FIFO (weight: 2)	109.86%
+0x05. Python - Exceptions	200%
+0x06. Python - Classes and Objects	200%
+Evaluation #3	47.06%
+Month #4	137.4%
+0x07. Python - Test-driven development	200%
+0x08. Python - More Classes and Objects	67.81%
+0x09. Python - Everything is object	200%
+0x1A. C - Hash tables	0%
+0x0A. Python - Inheritance	200%
+0x0B. Python - Input/Output	139.19%
+0x0C. Python - Almost a circle	200%
+0x1B. C - Sorting algorithms & Big O (weight: 2)	166.46%
+0x04. Loops, conditions and parsing	195.18%
+0x05. Processes and signals	41.53%
+Evaluation #4	72.22%
+Month #5	93.66%
+0x06. Regular expression	200%
+0x07. Networking basics #0	100%
+0x08. Networking basics #1	200%
+0x00. AirBnB clone - The console (weight: 5)	156.74%
+0x0D. SQL - Introduction	107.25%
+0x0E. SQL - More queries	125%
+0x01. AirBnB clone - Web static	0%
+0x1C. C - Makefiles	184.62%
+0x09. Web infrastructure design	0%
+0x1D. C - Binary trees (weight: 5)	0%
+Evaluation #5	78.95%
+Month #6	65%
+0x12. JavaScript - Warm up	35.66%
+0x13. JavaScript - Objects, Scopes and Closures	70.47%
+0x0F. Python - Object-relational mapping	0%
+0x02. AirBnB clone - MySQL (weight: 2)	45.76%
+0x0A. Configuration management	50.56%
+0x0B. SSH	144.38%
+0x0C. Web server	76.92%
+0x0D. Web stack debugging #0	0%
+0x10. Python - Network #0	188.3%
+0x11. Python - Network #1	107.25%
+0x0F. Load balancer	0%
+Evaluation #6	80%
+Month #7	0%
+0x0E. Web stack debugging #1	0%
+0x10. HTTPS SSL	0%
+0x03. AirBnB clone - Deploy static	0%
+redirect scheme https if !{ ssl_fc }
         default_backend ollyjhay-backend
 backend ollyjhay-backend
         balance roundrobin
