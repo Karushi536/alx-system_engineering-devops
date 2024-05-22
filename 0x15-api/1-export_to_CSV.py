@@ -1,38 +1,37 @@
 #!/usr/bin/python3
 """
-Return information for a given employee about his/her TODO list progress
+Script that takes in a URL, sends a request to the URL
+and displays the body of the response
 """
+
+import csv
+import requests
+from sys import argv
+
+
 if __name__ == "__main__":
-    import csv
-    import requests
-    import sys
+    if len(argv) < 2:
+        print("Usage: {} <employee_id>".format(argv[0]))
+        exit(1)
 
-    DONE_TASKS = 0
-    ALL_TASKS = 0
-    csvList = []
+    employee_id = argv[1]
 
-    URL_FOR_USERS = 'https://jsonplaceholder.typicode.com/users/{0}'.\
-        format(sys.argv[1])
-    URL_FOR_TODOS = 'https://jsonplaceholder.typicode.com/todos'
-    r_for_users = requests.get(URL_FOR_USERS)
-    r_for_todos = requests.get(URL_FOR_TODOS)
+    url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(employee_id)
+    response = requests.get(url)
+    tasks = response.json()
 
-    name = r_for_users.json().get('name')
-    user_name = r_for_users.json().get('username')
-    todos = r_for_todos.json()
-    for todo in todos:
-        if todo.get('userId') == int(sys.argv[1]):
-            subcsvList = []
-        if todo.get('userId') == int(sys.argv[1]):
-            ALL_TASKS += 1
-            subcsvList.append(todo.get('userId'))
-            subcsvList.append(user_name)
-            subcsvList.append(todo.get('completed'))
-            subcsvList.append(todo.get('title'))
-            csvList.append(subcsvList)
-        if (todo.get('userId') == int(sys.argv[1]))\
-                and (todo.get('completed')):
-            DONE_TASKS += 1
-    with open(sys.argv[1] + '.csv', 'w+', newline='') as f:
-        writer = csv.writer(f, quoting=csv.QUOTE_ALL)
-        writer.writerows(csvList)
+    if not tasks:
+        print("No tasks found for employee with ID {}".format(employee_id))
+        exit(0)
+
+    user_info_url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
+    user_info_response = requests.get(user_info_url)
+    user_info = user_info_response.json()
+    username = user_info.get('username')
+
+    csv_filename = "{}.csv".format(employee_id)
+    with open(csv_filename, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        for task in tasks:
+            writer.writerow([employee_id, username, task['completed'], task['title']])
