@@ -1,37 +1,31 @@
 #!/usr/bin/python3
 """
-Script that takes in a URL, sends a request to the URL
-and displays the body of the response
+export data in JSON format
+Records all tasks from all employees
 """
-
-import csv
-import requests
-from sys import argv
-
-
 if __name__ == "__main__":
-    if len(argv) < 2:
-        print("Usage: {} <employee_id>".format(argv[0]))
-        exit(1)
+    import json
+    import requests
 
-    employee_id = argv[1]
+    FILENAME = 'todo_all_employees.json'
+    URL_FOR_USERS = 'https://jsonplaceholder.typicode.com/users'
+    URL_FOR_TODOS = 'https://jsonplaceholder.typicode.com/todos'
 
-    url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(employee_id)
-    response = requests.get(url)
-    tasks = response.json()
+    r_for_users = requests.get(URL_FOR_USERS)
+    r_for_todos = requests.get(URL_FOR_TODOS)
 
-    if not tasks:
-        print("No tasks found for employee with ID {}".format(employee_id))
-        exit(0)
+    users = r_for_users.json()
+    todos = r_for_todos.json()
+    todo_all_employees = {}
 
-    user_info_url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
-    user_info_response = requests.get(user_info_url)
-    user_info = user_info_response.json()
-    username = user_info.get('username')
-
-    csv_filename = "{}.csv".format(employee_id)
-    with open(csv_filename, mode='w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
-        for task in tasks:
-            writer.writerow([employee_id, username, task['completed'], task['title']])
+    for user in users:
+        todos_list = []
+        for todo in todos:
+            if todo.get("userId") == user.get("id"):
+                my_dict = {"username": user.get("username"),
+                           "task": todo.get("title"),
+                           "completed": todo.get("completed")}
+                todos_list.append(my_dict)
+        todo_all_employees[user.get("id")] = todos_list
+    with open(FILENAME, 'w+') as f:
+        json.dump(todo_all_employees, f)
