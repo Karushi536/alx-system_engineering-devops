@@ -4,7 +4,7 @@
 Outage started at 2024-05-02 09:00 EAT and ended at 2024-05-03 05:00 EAT.
 
 **Impact:**  
-The internal development server for the "QuickFinance" application experienced a catastrophic failure. Developers were unable to push or pull code changes, causing widespread panic and excessive coffee consumption among 75% of our developers.
+The internal development server for the "HakunaMatata" application experienced a catastrophic failure. Developers were unable to push or pull code changes, causing widespread panic and excessive coffee consumption among 75% of our developers.
 
 **Root Cause:**  
 A broken package installation led to a dependency apocalypse that could not be resolved, necessitating a complete server reinstallation.
