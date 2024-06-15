@@ -1,18 +1,6 @@
-# Ensure the PHP module is installed and enabled, then restart Apache
+# Fixes bad `phpp` extensions to `php` in the WordPress file `wp-settings.php`.
 
-package { 'libapache2-mod-php':
-  ensure => installed,
-}
-
-exec { 'enable_php_module':
-  command => '/usr/sbin/a2enmod php5',
-  path    => ['/bin', '/usr/bin', '/sbin', '/usr/sbin'],
-  unless  => '/usr/sbin/apache2ctl -M | grep php5',
-  notify  => Service['apache2'],
-}
-
-service { 'apache2':
-  ensure => running,
-  enable => true,
-  require => Package['libapache2-mod-php'],
+exec { 'fix-wordpress':
+  command => 'sed -i s/phpp/php/g /var/www/html/wp-settings.php',
+  path    => '/usr/local/bin/:/bin/'
 }
